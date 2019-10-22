@@ -63,9 +63,8 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "emails shouldn't be case sensitive" do
-    duplicate_email = @user.dup.upcase
-    @user.save
-    assert_not duplicate_email.valid?
+    @user.email.upcase!
+    assert_not @user.valid?
   end
 
   test "email addresses should be saved as lower-case" do
