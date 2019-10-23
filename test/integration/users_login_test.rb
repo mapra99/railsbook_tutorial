@@ -14,7 +14,8 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     user.save
 
     get login_path
-    post login_path, params: { session: { email: "this@example.com", password: "password123" } }
+    post login_path, params: { session: { email: "this@example.com", password: "password123" } }    
+    follow_redirect!
     assert_not flash.empty?
     get root_path
     assert flash.empty?
