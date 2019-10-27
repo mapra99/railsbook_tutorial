@@ -13,3 +13,18 @@
     text-decoration: none;
   }
 }
+
+.dropdown{
+  position: relative;
+}
+
+.dropdown-menu{
+  display: none;
+  position: absolute;
+  z-index: 1;
+  min-width: 160px;
+}
+
+.dropdown:hover .dropdown-menu{
+  display: block;
+}
