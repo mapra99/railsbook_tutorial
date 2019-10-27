@@ -23,5 +23,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
                                          password: 'Pompolo123',
                                          password_confirmation: 'Pompolo123' } }
     end
+    follow_redirect!
+    assert is_logged_in?
   end
 end
