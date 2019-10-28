@@ -46,3 +46,16 @@ textarea {
 @import "modules/typography";
 @import "modules/aside-menu";
 @import "modules/forms";
+
+.checkbox {
+  margin-bottom: 10px;
+  span {
+    margin-left: 20px;
+    font-weight: normal;
+  }
+}
+
+#session_remember_me {
+  width: auto;
+  margin-left: 0;
+}
