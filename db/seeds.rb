@@ -8,12 +8,14 @@
 User.create(name: "Miguel Prada", 
             email: "mapra99@gmail.com", 
             password: "password", 
-            password_confirmation: "password")
+            password_confirmation: "password",
+            admin: true)
 
 User.create(name: "Miguel Toto", 
             email: "inge.maps@gmail.com", 
             password: "password", 
-            password_confirmation: "password")
+            password_confirmation: "password",
+            admin: false)
 
 98.times do |i|
   i += 1
@@ -24,5 +26,6 @@ User.create(name: "Miguel Toto",
   User.create(name: name,
               email: email,
               password: password,
-              password_confirmation: password)
+              password_confirmation: password,
+              admin: false)
 end
