@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    return if @user.activated
+    
+    flash[:danger] = "Your account is not activated. Please check your email"     
+    redirect_to root_url
   end
 
   def new
