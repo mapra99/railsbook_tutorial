@@ -4,6 +4,7 @@ class User < ApplicationRecord
   attr_accessor :remember_token
 
   before_save { email.downcase! }
+  before_create :create_activation_digest
 
   validates :name, presence: true,
                    length: { maximum: 50 }
