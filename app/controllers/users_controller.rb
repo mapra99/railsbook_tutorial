@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    return if @user.activated
+    
+    flash[:danger] = "Your account is not activated. Please check your email"     
+    redirect_to root_url
   end
 
   def new
@@ -31,16 +35,16 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      log_in @user
-      flash[:success] = 'Welcome to the Sample App!'
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
+      redirect_to root_path
     else
       render :new
     end
   end
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 15)
+    @users = User.where(activated: true).paginate(page: params[:page], per_page: 15)
   end
 
   def destroy 
