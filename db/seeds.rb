@@ -21,7 +21,7 @@ User.create(name: "Miguel Toto",
 
 98.times do |i|
   i += 1
-  name = Faker::Name.name
+  name = Faker::Movies::LordOfTheRings.character
   email = "example#{i}@example.com"
   password = "password"
 

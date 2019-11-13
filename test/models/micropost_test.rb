@@ -20,4 +20,12 @@ class MicropostTest < ActiveSupport::TestCase
   test 'retrieve of all microposts should be in reverse created order' do
     assert_equal microposts(:most_recent), Micropost.first
   end
+
+  test 'there must be a destroy dependence among users and microposts' do
+    @user.save
+    @micropost.save
+    assert_difference 'Micropost.count', -1 do
+      @user.destroy
+    end
+  end
 end
