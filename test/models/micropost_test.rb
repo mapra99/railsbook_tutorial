@@ -16,4 +16,8 @@ class MicropostTest < ActiveSupport::TestCase
     @micropost.user_id = nil
     assert_not @micropost.valid?
   end
+
+  test 'retrieve of all microposts should be in reverse created order' do
+    assert_equal microposts(:most_recent), Micropost.first
+  end
 end
