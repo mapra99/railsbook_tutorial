@@ -7,9 +7,11 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+
     return if @user.activated
-    
-    flash[:danger] = "Your account is not activated. Please check your email"     
+
+    flash[:danger] = 'Your account is not activated. Please check your email'
     redirect_to root_url
   end
 
