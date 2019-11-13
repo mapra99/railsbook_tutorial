@@ -5,12 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(name: "Miguel Prada", 
-            email: "mapra99@gmail.com", 
-            password: "password", 
-            password_confirmation: "password",
-            admin: true,
-            activated: true)
+user = User.create(name: "Miguel Prada", 
+                  email: "mapra99@gmail.com", 
+                  password: "password", 
+                  password_confirmation: "password",
+                  admin: true,
+                  activated: true)
+
+50.times do
+  content = Faker::Movie.quote
+  user.microposts.create!(content: content)
+end
 
 User.create(name: "Miguel Toto", 
             email: "inge.maps@gmail.com", 
@@ -25,10 +30,17 @@ User.create(name: "Miguel Toto",
   email = "example#{i}@example.com"
   password = "password"
 
-  User.create(name: name,
-              email: email,
-              password: password,
-              password_confirmation: password,
-              admin: false,
-              activated: true)
+  user = User.create(name: name,
+                    email: email,
+                    password: password,
+                    password_confirmation: password,
+                    admin: false,
+                    activated: true)
+
+  if i <= 6
+    50.times do
+      content = Faker::Movie.quote
+      user.microposts.create!(content: content)
+    end
+  end
 end
