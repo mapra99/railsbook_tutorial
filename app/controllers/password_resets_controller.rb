@@ -1,8 +1,13 @@
+# frozen_string_literal: true
+
 class PasswordResetsController < ApplicationController
-  def new
-  end
+  before_action :find_user, only: %i[edit update]
+  before_action :valid_user, only: %i[edit update]
+
+  def new; end
 
   def edit
+    @user = User.find_by(email: params[:email])
   end
 
   def create
@@ -16,5 +21,17 @@ class PasswordResetsController < ApplicationController
       flash.now[:danger] = 'Email address not found'
       render :new
     end
+  end
+
+  private
+
+  def find_user
+    @user = User.find_by(emai: params[:email])
+  end
+
+  def valid_user
+    return if @user&.activated? && @user&.authenticated?(:reset, params[:id])
+
+    redirect_to root_url
   end
 end
