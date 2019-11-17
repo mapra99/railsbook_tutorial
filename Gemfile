@@ -35,7 +35,11 @@ gem 'will_paginate'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+gem 'carrierwave'
+gem 'mini_magick'
+
 group :production do
+  gem 'fog'
   gem 'pg'
 end
 
